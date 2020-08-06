@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Anonymous Chat using Socket.IO</title>
+    </head>
+    <body>
+        <ul id="messages"></ul>
+        <form action="">
+            <input id="m" autocomplete="off" /><button>send</button>
+        </form>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io();
+        </script>
+    </body>
+</html>
