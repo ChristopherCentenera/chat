@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Anonymous Chat using Socket.IO</title>
+        <link rel='stylesheet' href='./css/style.css'>
     </head>
     <body>
         <ul id="messages"></ul>
@@ -9,8 +10,20 @@
             <input id="m" autocomplete="off" /><button>send</button>
         </form>
         <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script>
-            let socket = io();
+        $(function () {
+            var socket = io();
+            $('form').submit(function(e){
+                e.preventDefault(); // prevents page reloading
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function(msg){
+                $('#messages').append($('<li>').text(msg));
+            });
+        });
         </script>
     </body>
 </html>
